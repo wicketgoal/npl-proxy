@@ -1,10 +1,13 @@
 export const config = {
-  runtime: "nodejs20.x"
+  runtime: "nodejs"   // ✅ Correct value
 };
 
 export default async function handler(req, res) {
   const url = req.query.url;
-  if (!url) return res.status(400).send("Missing URL");
+
+  if (!url) {
+    return res.status(400).send("Missing URL");
+  }
 
   try {
     const response = await fetch(url, {
@@ -16,9 +19,10 @@ export default async function handler(req, res) {
     });
 
     res.setHeader("Content-Type", response.headers.get("content-type") || "application/octet-stream");
-    
-    const data = await response.text();
-    res.send(data);
+
+    const text = await response.text();
+    res.send(text);
+
   } catch (err) {
     res.status(500).send("Proxy Failed");
   }
