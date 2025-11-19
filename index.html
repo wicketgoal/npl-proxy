@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPL Proxy Player</title>
+<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+<style>
+    html,body { margin:0; height:100%; background:#000; }
+    #player { width:100%; height:100%; }
+</style>
+</head>
+<body>
+
+<div id="player"></div>
+
+<script>
+jwplayer("player").setup({
+    playlist: [{
+        title: "NPL Live Player",
+        sources: [{
+            file: "/api/proxy?url=https://in-mc-fdlive.fancode.com/mumbai/138296_english_hls_4099c76e8233550_1adfreeta-di_h264/index.m3u8"
+        }]
+    }],
+    autostart: true
+});
+</script>
+
+</body>
+</html>
